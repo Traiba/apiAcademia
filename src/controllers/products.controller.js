@@ -89,23 +89,30 @@ const getTotalProducts = async (req, res) => {
 };
 
 const updateProductById = async (req, res) => {
-  const { description, name, quantity } = req.body;
+  const { nome, idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo } = req.body;
+  const { nomerecebido } = req.params;
 
   // validating
-  if (description == null || name == null || quantity == null) {
+  if (idade == null || nome == null || peso == null) {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
 
   try {
-    const pool = await getConnection();
     await pool
       .request()
-      .input("name", sql.VarChar, name)
-      .input("description", sql.Text, description)
-      .input("quantity", sql.Int, quantity)
-      .input("id", req.params.id)
+      .input("nomeRecebido", sql.VarChar, nomerecebido)
+      .input("nome", sql.VarChar, nome)
+      .input("idade", sql.Int, idade)
+      .input("telefone", sql.VarChar, telefone)
+      .input("email", sql.VarChar, email)
+      .input("peso", sql.Float, peso)
+      .input("senha", sql.VarChar, senha)
+      .input("imagem", sql.VarChar, imagem)
+      .input("idGenero", sql.Int, idGenero)
+      .input("idObjetivo", sql.Int, idObjetivo)
+      
       .query(querys.updateProductById);
-    res.json({ name, description, quantity });
+    res.json({ nome ,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo });
   } catch (error) {
     res.status(500);
     res.send(error.message);
