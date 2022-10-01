@@ -13,27 +13,34 @@ const getProducts = async (req, res) => {
 };
 
 const createNewProduct = async (req, res) => {
-  const { name, description } = req.body;
-  let { quantity } = req.body;
+  const {nome,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo} = req.body;
+  
 
   // validating
-  if (description == null || name == null) {
+  if (nome == null) {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
 
-  if (quantity == null) quantity = 0;
+  
 
   try {
     const pool = await getConnection();
 
     await pool
       .request()
-      .input("name", sql.VarChar, name)
-      .input("description", sql.Text, description)
-      .input("quantity", sql.Int, quantity)
+      .input("nome", sql.VarChar, nome)
+      .input("idade", sql.Int, idade)
+      .input("telefone", sql.VarChar, telefone)
+      .input("email", sql.VarChar, email)
+      .input("peso", sql.Float, peso)
+      .input("senha", sql.VarChar, senha)
+      .input("imagem", sql.NVarChar, imagem)
+      .input("idGenero", sql.Int, idGenero)
+      .input("idObjetivo", sql.Int, idObjetivo)
+      
       .query(querys.addNewProduct);
 
-    res.json({ name, description, quantity });
+    res.json({ nome ,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo });
   } catch (error) {
     res.status(500);
     res.send(error.message);

@@ -2,10 +2,10 @@ const sql = require("mssql");
 const config = require("../config");
 
 const dbSettings = {
-  user: 'BD21254',
-  password: 'BD21254',
+  user: 'BD21686',
+  password: 'BD21686',
   server: 'regulus.cotuca.unicamp.br',
-  database: 'BD21254',
+  database: 'BD21686',
   options: {
     encrypt: true, // for azure 
     trustServerCertificate: true, // change to true for local dev / self-signed certs
