@@ -1,12 +1,9 @@
 module.exports = {
-  getAllProducts: "SELECT * FROM Usuario",
+  getAllUsuarios: "SELECT * FROM Usuario",
   getProducById: "SELECT * FROM Products Where Id = @Id",
-  addNewProduct:
-    // "INSERT INTO [webstore].[dbo].[Products] (name, description, quantity) VALUES (@name,@description,@quantity);"
-    "INSERT INTO Usuario(nome, idade, telefone, email,peso,senha,imagem,idGenero,idObjetivo) VALUES (@nome,@idade,@telefone,@email,@peso,@senha,@imagem,@idGenero,@idObjetivo);"
-,
-  deleteProduct: "DELETE FROM [webstore].[dbo].[Products] WHERE Id= @Id",
+  addNewUsuario:"INSERT INTO Usuario(nome, idade, telefone, email,peso,senha,imagem,idGenero,idObjetivo) VALUES (@nome,@idade,@telefone,@email,@peso,@senha,@imagem,@idGenero,@idObjetivo);",
+  deleteUsuario: "DELETE FROM Usuario WHERE idConta = @id",
   getTotalProducts: "SELECT COUNT(*) FROM webstore.dbo.Products",
-  updateProductById:
-    "UPDATE [webstore].[dbo].[Products] SET Name = @name, Description = @description, Quantity = @quantity WHERE Id = @id",
+  updateUsuarioById:"UPDATE Usuario SET nome = @nome,idade = @idade,@telefone = telefone,@email = email,@peso = peso,@senha = senha,@idGenero = idGenero,@idObjetivo = idObjetivo WHERE idConta = @id",
+    
 };

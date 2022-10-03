@@ -1,10 +1,10 @@
 const { getConnection, sql } = require("../database/connection");
 const querys = require("../database/querys");
 
-const getProducts = async (req, res) => {
+const getUsuarios = async (req, res) => {
   try {
     const pool = await getConnection();
-    const result = await pool.request().query(querys.getAllProducts);
+    const result = await pool.request().query(querys.getAllUsuarios);//aqui
     res.json(result.recordset);
   } catch (error) {
     res.status(500);
@@ -12,7 +12,7 @@ const getProducts = async (req, res) => {
   }
 };
 
-const createNewProduct = async (req, res) => {
+const createUsuario = async (req, res) => {
   const {nome,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo} = req.body;
   
 
@@ -38,7 +38,7 @@ const createNewProduct = async (req, res) => {
       .input("idGenero", sql.Int, idGenero)
       .input("idObjetivo", sql.Int, idObjetivo)
       
-      .query(querys.addNewProduct);
+      .query(querys.addNewUsuario);
 
     res.json({ nome ,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo });
   } catch (error) {
@@ -62,14 +62,14 @@ const getProductById = async (req, res) => {
   }
 };
 
-const deleteProductById = async (req, res) => {
+const deleteUsuarioById = async (req, res) => {
   try {
     const pool = await getConnection();
 
     const result = await pool
       .request()
       .input("id", req.params.id)
-      .query(querys.deleteProduct);
+      .query(querys.deleteUsuario);
 
     if (result.rowsAffected[0] === 0) return res.sendStatus(404);
 
@@ -88,11 +88,11 @@ const getTotalProducts = async (req, res) => {
   res.json(result.recordset[0][""]);
 };
 
-const updateProductById = async (req, res) => {
-  const { description, name, quantity } = req.body;
+const updateUsuarioById = async (req, res) => {
+  const {nome,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo} = req.body;
 
   // validating
-  if (description == null || name == null || quantity == null) {
+  if (nome == null) {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
 
@@ -100,12 +100,19 @@ const updateProductById = async (req, res) => {
     const pool = await getConnection();
     await pool
       .request()
-      .input("name", sql.VarChar, name)
-      .input("description", sql.Text, description)
-      .input("quantity", sql.Int, quantity)
+      .input("nome", sql.VarChar, nome)
+      .input("idade", sql.Int, idade)
+      .input("telefone", sql.VarChar, telefone)
+      .input("email", sql.VarChar, email)
+      .input("peso", sql.Float, peso)
+      .input("senha", sql.VarChar, senha)
+      .input("imagem", sql.NVarChar, imagem)
+      .input("idGenero", sql.Int, idGenero)
+      .input("idObjetivo", sql.Int, idObjetivo)
       .input("id", req.params.id)
-      .query(querys.updateProductById);
-    res.json({ name, description, quantity });
+      .query(querys.updateUsuarioById);
+
+      res.json({ nome ,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo });
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -114,10 +121,10 @@ const updateProductById = async (req, res) => {
 
 
 module.exports = {
-  getProducts,
-  createNewProduct,
+  getUsuarios,
+  createUsuario,
   getProductById,
-  deleteProductById,
+  deleteUsuarioById,
   getTotalProducts,
-  updateProductById
+  updateUsuarioById
 }
