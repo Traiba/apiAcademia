@@ -13,6 +13,7 @@ const getUsuarios = async (req, res) => {
 };
 
 const createUsuario = async (req, res) => {
+  console.log(req.body)
   const {nome,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo} = req.body;
   
 

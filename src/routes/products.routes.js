@@ -12,7 +12,7 @@ const router = Router();
 
 router.get("/academia", getUsuarios); //funciona
 
-router.post("/academia", createUsuario); //funciona
+router.post("/academia/post", createUsuario); //funciona
 
 router.get("/products/count", getTotalProducts);
 
