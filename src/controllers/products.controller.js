@@ -21,8 +21,6 @@ const createUsuario = async (req, res) => {
     return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
   }
 
-  
-
   try {
     const pool = await getConnection();
 
