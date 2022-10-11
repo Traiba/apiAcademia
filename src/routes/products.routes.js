@@ -1,6 +1,12 @@
 const { Router } = require("express");
 const {
-  getUsuarios,
+  //EXERCICIOS
+  getExercicios, 
+  createExercicio,
+  deleteExercicioById,
+  updateExercicioById,
+  ///USUARIOS
+  getUsuarios, 
   createUsuario,
   getProductById,
   deleteUsuarioById,
@@ -9,17 +15,19 @@ const {
 } = require("../controllers/products.controller");
 
 const router = Router();
-
-router.get("/academia", getUsuarios); //funciona
-
-router.post("/academia/post", createUsuario); //funciona
+//EXERCICIOS
+router.get("/exercicios", getExercicios);
+router.post("/exercicios/post", createExercicio);
+router.delete("/exercicios/:id", deleteExercicioById);
+router.put("/exercicios/:id", updateExercicioById);
+//USUARIOS
+router.get("/academia", getUsuarios);
+router.post("/academia/post", createUsuario); 
+router.delete("/academia/:id", deleteUsuarioById); 
+router.put("/academia/:id", updateUsuarioById);
 
 router.get("/products/count", getTotalProducts);
-
 router.get("/products/:id", getProductById);
 
-router.delete("/academia/:id", deleteUsuarioById); // funciona
-
-router.put("/academia/:id", updateUsuarioById);
 
 module.exports = router;
