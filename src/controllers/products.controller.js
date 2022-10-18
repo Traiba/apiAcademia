@@ -120,8 +120,8 @@ const getUsuarios = async (req, res) => {
 };
 const createUsuario = async (req, res) => {
   console.log(req.body)
-  const {nome,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo} = req.body;
-  
+  //const {nome,idade,tempo,email,peso,altura,senha,imagem,idGenero,idObjetivo} = req.body;
+  const {nome,idade,tempo,email,peso,altura,senha,imagem,genero,objetivo} = req.body;
 
   // validating
   if (nome == null) {
@@ -135,17 +135,18 @@ const createUsuario = async (req, res) => {
       .request()
       .input("nome", sql.VarChar, nome)
       .input("idade", sql.Int, idade)
-      .input("telefone", sql.VarChar, telefone)
+      .input("tempo", sql.Int, tempo)
       .input("email", sql.VarChar, email)
       .input("peso", sql.Float, peso)
+      .input("altura", sql.Float, altura)
       .input("senha", sql.VarChar, senha)
       .input("imagem", sql.NVarChar, imagem)
-      .input("idGenero", sql.Int, idGenero)
-      .input("idObjetivo", sql.Int, idObjetivo)
+      .input("genero", sql.Int, genero)
+      .input("objetivo", sql.Int, objetivo)
       
       .query(querys.addNewUsuario);
 
-    res.json({ nome ,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo });
+    res.json({ nome ,idade,tempo,email,peso,altura,senha,imagem,genero,objetivo });
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -194,7 +195,7 @@ const getTotalProducts = async (req, res) => {
 };
 
 const updateUsuarioById = async (req, res) => {
-  const {nome,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo} = req.body;
+  const {nome,idade,tempo,email,peso,altura,senha,imagem,idGenero,idObjetivo} = req.body;
 
   // validating
   if (nome == null) {
@@ -207,6 +208,7 @@ const updateUsuarioById = async (req, res) => {
       .request()
       .input("nome", sql.VarChar, nome)
       .input("idade", sql.Int, idade)
+      .input("tempo", sql.Int, tempo)
       .input("telefone", sql.VarChar, telefone)
       .input("email", sql.VarChar, email)
       .input("peso", sql.Float, peso)
@@ -217,7 +219,7 @@ const updateUsuarioById = async (req, res) => {
       .input("id", req.params.id)
       .query(querys.updateUsuarioById);
 
-      res.json({ nome ,idade,telefone,email,peso,senha,imagem,idGenero,idObjetivo });
+      res.json({ nome ,idade,tempo,email,peso,altura,senha,imagem,idGenero,idObjetivo });
   } catch (error) {
     res.status(500);
     res.send(error.message);
