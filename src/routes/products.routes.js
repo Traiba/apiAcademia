@@ -12,6 +12,7 @@ const {
   deleteUsuarioById,
   getTotalProducts,
   updateUsuarioById,
+  getUserByEmail
 } = require("../controllers/products.controller");
 
 const router = Router();
@@ -25,9 +26,11 @@ router.get("/academia", getUsuarios);
 router.post("/academia/post", createUsuario); 
 router.delete("/academia/:id", deleteUsuarioById); 
 router.put("/academia/:id", updateUsuarioById);
+router.get("/academia/:email", getUserByEmail);
 
 router.get("/products/count", getTotalProducts);
 router.get("/products/:id", getProductById);
+
 
 
 module.exports = router;
