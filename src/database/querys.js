@@ -18,4 +18,3 @@ module.exports = {
 
   users: "SELECT * FROM Usuario Where email = @email"
 };
-  

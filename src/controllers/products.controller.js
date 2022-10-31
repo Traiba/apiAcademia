@@ -14,6 +14,19 @@ const getExercicios = async (req, res) => {
   }
 };
 
+const getExercicios50_150 = async (req, res) => {
+  try {
+    
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getExerc50_150);//aqui
+    res.json(result.recordset);
+
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
 const createExercicio = async (req, res) => {
   const {nome,quantVezes,sessoes,idAmbiente,idObjetivo} = req.body;
   
@@ -251,6 +264,7 @@ module.exports = {
   deleteExercicioById,
   getTotalProducts,
   updateExercicioById,
+  getExercicios50_150,
   //USUARIOS
   getUsuarios,
   createUsuario,

@@ -2,6 +2,7 @@ const { Router } = require("express");
 const {
   //EXERCICIOS
   getExercicios, 
+  getExercicios50_150,
   createExercicio,
   deleteExercicioById,
   updateExercicioById,
@@ -18,6 +19,7 @@ const {
 const router = Router();
 //EXERCICIOS
 router.get("/exercicios", getExercicios);
+router.get("/exercicios/peso", getExercicios50_150);
 router.post("/exercicios/post", createExercicio);
 router.delete("/exercicios/:id", deleteExercicioById);
 router.put("/exercicios/:id", updateExercicioById);
