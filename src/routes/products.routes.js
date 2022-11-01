@@ -3,6 +3,9 @@ const {
   //EXERCICIOS
   getExercicios, 
   getExercicios50_150,
+  getExercicios60_160,
+  getExercicios70_170,
+  getExerciciosPadrao,
   createExercicio,
   deleteExercicioById,
   updateExercicioById,
@@ -19,7 +22,10 @@ const {
 const router = Router();
 //EXERCICIOS
 router.get("/exercicios", getExercicios);
-router.get("/exercicios/peso", getExercicios50_150);
+router.get("/exercicios/50_150", getExercicios50_150);
+router.get("/exercicios/60_160", getExercicios60_160);
+router.get("/exercicios/70_170", getExercicios70_170);
+router.get("/exercicios/80_180", getExerciciosPadrao);
 router.post("/exercicios/post", createExercicio);
 router.delete("/exercicios/:id", deleteExercicioById);
 router.put("/exercicios/:id", updateExercicioById);

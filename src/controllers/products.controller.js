@@ -26,6 +26,42 @@ const getExercicios50_150 = async (req, res) => {
     res.send(error.message);
   }
 };
+const getExercicios60_160 = async (req, res) => {
+  try {
+    
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getExerc60_160);//aqui
+    res.json(result.recordset);
+
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+const getExercicios70_170 = async (req, res) => {
+  try {
+    
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getExerc70_170);//aqui
+    res.json(result.recordset);
+
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+const getExerciciosPadrao = async (req, res) => {
+  try {
+    
+    const pool = await getConnection();
+    const result = await pool.request().query(querys.getExercPadrao);//aqui
+    res.json(result.recordset);
+
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
 
 const createExercicio = async (req, res) => {
   const {nome,quantVezes,sessoes,idAmbiente,idObjetivo} = req.body;
@@ -265,6 +301,9 @@ module.exports = {
   getTotalProducts,
   updateExercicioById,
   getExercicios50_150,
+  getExercicios60_160,
+  getExercicios70_170,
+  getExerciciosPadrao,
   //USUARIOS
   getUsuarios,
   createUsuario,
