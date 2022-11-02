@@ -243,8 +243,9 @@ const getTotalProducts = async (req, res) => {
   res.json(result.recordset[0][""]);
 };
 
-const updateUsuarioById = async (req, res) => {
+const updateUsuarioByEmail = async (req, res) => {
   const {nome,idade,tempo,email,peso,altura,senha,imagem,idGenero,idObjetivo} = req.body;
+  
 
   // validating
   if (nome == null) {
@@ -258,15 +259,15 @@ const updateUsuarioById = async (req, res) => {
       .input("nome", sql.VarChar, nome)
       .input("idade", sql.Int, idade)
       .input("tempo", sql.Int, tempo)
-      .input("telefone", sql.VarChar, telefone)
       .input("email", sql.VarChar, email)
       .input("peso", sql.Float, peso)
+      .input("altura", sql.Float, altura)
       .input("senha", sql.VarChar, senha)
       .input("imagem", sql.NVarChar, imagem)
       .input("idGenero", sql.Int, idGenero)
       .input("idObjetivo", sql.Int, idObjetivo)
       .input("id", req.params.id)
-      .query(querys.updateUsuarioById);
+      .query(querys.updateUsuarioByEmail);
 
       res.json({ nome ,idade,tempo,email,peso,altura,senha,imagem,idGenero,idObjetivo });
   } catch (error) {
@@ -310,7 +311,7 @@ module.exports = {
   getProductById,
   deleteUsuarioById,
   getTotalProducts,
-  updateUsuarioById,
+  updateUsuarioByEmail,
 
   getUserByEmail
   

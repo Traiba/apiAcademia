@@ -15,7 +15,7 @@ const {
   getProductById,
   deleteUsuarioById,
   getTotalProducts,
-  updateUsuarioById,
+  updateUsuarioByEmail,
   getUserByEmail
 } = require("../controllers/products.controller");
 
@@ -33,7 +33,7 @@ router.put("/exercicios/:id", updateExercicioById);
 router.get("/academia", getUsuarios);
 router.post("/academia/post", createUsuario); 
 router.delete("/academia/:id", deleteUsuarioById); 
-router.put("/academia/:id", updateUsuarioById);
+router.put("/academia/:email", updateUsuarioByEmail);
 router.get("/academia/:email", getUserByEmail);
 
 router.get("/products/count", getTotalProducts);
